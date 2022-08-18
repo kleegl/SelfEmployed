@@ -2,12 +2,14 @@
 using iMessengerCoreAPI.Models;
 using iMessengerCoreAPI.Repositories.Interfaces;
 using iMessengerCoreAPI.Services.Interfaces;
+using Microsoft.AspNetCore.Mvc.Versioning;
 
 namespace iMessengerCoreAPI.Controllers
 {
     [Produces("application/json")]
-    //[Route("[controller][action]")]
+    [Route("api/[controller]")]
     [ApiController]
+    [ApiVersion("1.0")]
     public class RGDialogsController : Controller
     {
         private readonly IRGDialogsClientsService _iRGDialogsClientsService;
@@ -19,14 +21,14 @@ namespace iMessengerCoreAPI.Controllers
             _iRGDialogsClientsRepository = iRGDialogsClientsRepository;
         }
 
-        [HttpPost]
+        [HttpPost("dialog-id-by-client-list")]
         public JsonResult GetDialogByIDClientList(List<Guid> idClientList)
         {
             return new JsonResult(_iRGDialogsClientsService.GetDialogByIDClientList(idClientList));
         }
 
 
-        [HttpGet]
+        [HttpGet("rg-dialogs-clients")]
         public JsonResult GetAll()
         {
             return new JsonResult(_iRGDialogsClientsRepository.GetAllObjects());

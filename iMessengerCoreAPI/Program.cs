@@ -18,6 +18,8 @@ builder.Services.AddSwaggerGen(swaggerGenOptions =>
     swaggerGenOptions.SwaggerDoc("v1", new OpenApiInfo { Title = "iMessengerCoreAPI", Version = "v1" });
 });
 
+builder.Services.AddRouting(options => options.LowercaseUrls = true);
+
 builder.Services.AddTransient<IRGDialogsClients, RGDialogsClients>();
 builder.Services.AddTransient<IRGDialogsClientsRepository, RGDialogsClientsRepository>();
 builder.Services.AddTransient<IRGDialogsClientsService, RGDialogsClientsService>();

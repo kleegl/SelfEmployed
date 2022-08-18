@@ -28,7 +28,7 @@ namespace iMessengerCoreAPI.Controllers
         }
 
 
-        [HttpGet("rg-dialogs-clients")]
+        [HttpGet("rg-dialogs-clients-all")]
         public JsonResult GetAll()
         {
             return new JsonResult(_iRGDialogsClientsRepository.GetAllObjects());

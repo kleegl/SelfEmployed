@@ -13,11 +13,24 @@ namespace iMessengerCoreAPI.Services.Implementations
             _iRGDialogsClientsRepository = iRGDialogsClientsRepository;
         }
 
+        public List<RGDialogsClients> GetAllObjects()
+        {
+            try
+            {
+                return _iRGDialogsClientsRepository.GetAllObjects();
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return null;
+        }
+
         public Guid GetDialogByIDClientList(List<Guid> idClientList)
         {
             try
             {
-                List<Guid> findDialogList = new List<Guid>();
+                List<Guid> findDialogList = new();
                 Guid resultIdDialog = Guid.Empty;
                 foreach (Guid idClient in idClientList)
                 {
@@ -26,7 +39,10 @@ namespace iMessengerCoreAPI.Services.Implementations
                         if (idClient == idClientList[0])
                         {
                             if (Guid.Equals(idClient, rGDialogClient.IDClient))
+                            {
                                 findDialogList.Add(rGDialogClient.IDRGDialog);
+                                resultIdDialog = rGDialogClient.IDRGDialog;
+                            }
                         }
                         else
                         {
